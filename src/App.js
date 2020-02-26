@@ -45,9 +45,9 @@ function App() {
         <Switch>
           <Route exact path={"/"}
             component={Container} />
-          {/* <Route
+          <Route
             path={'/stockdata'}
-            component={StocksData} /> */}
+            component={StocksData} />
           <Route
             path={'posts'}
             component={Posts} />

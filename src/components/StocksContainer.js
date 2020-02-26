@@ -1,26 +1,40 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'
 import NumericLabel from 'react-pretty-numbers'
+import StockData from './StockData'
+
 
 const StocksContainer = ({ stock, addToWatchList }) => {
     const switchPrice = Number(stock.change) > 0 ? 'up' : 'down'
         let params = {
             percentage: true
         }
+  
+        // <Link to={{
+        //   pathname: '/tylermcginnis',
+        //   state: {
+        //     fromNotifications: true
+        //   }
+        // }}>Tyler McGinnis</Link>
     
     const stockName = 
-    <Link  to={`/${stock.symbol}`} className="card">
-        <h4 className="title">{stock.symbol}</h4>
-        <div className="ticker">
+      <Link
+        className="card"
+        to={{
+          pathname: `/stockdata/${stock.symbol}`,
+          state: { stock: true }
+        }} >
+            <h4 className="title">{stock.symbol}</h4>
+            <div className="ticker">
             <p className="price">${stock.latestPrice}</p>
             <span className={`change ${switchPrice}`}>
             <NumericLabel params={params}>
                 {stock.changePercent}
             </NumericLabel>
             </span> 
-        </div>
+            </div>
         </Link>
-    
+        
     return (
         <>
             {stock.symbol === undefined ?
@@ -28,13 +42,15 @@ const StocksContainer = ({ stock, addToWatchList }) => {
                 <>
                  {stockName}
                 </>    
-            ) 
-            }
+                )}
         <button
             onClick={
             () => addToWatchList(stock.symbol)}>
             Add to Watchlist
         </button>
+        <Route
+          path={'/stockdata:symbol'}
+        render={(props) => <StockData data={stock} {...props}/>}/> 
         </>
     
     )
