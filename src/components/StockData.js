@@ -1,40 +1,127 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {Component} from 'react'
+import Axios from 'axios'
+const IEX_TOKEN = process.env.REACT_APP_IEX_TOKEN
 
 
-const StockData = (stock) => {
-  console.log(`data: ${stock}`)
-  const switchPrice = Number(list.change) > 0 ? 'up' : 'down'
-       
+export default class StockData extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            stock: {},
+            isLoading: true
+        }
+    }
+
+  async componentDidMount() {
+    const { match: { params: { symbol } } } = this.props
     
-
-  const data =
-  stock.map((stock, index) =>(         
-      <Link
-              key={index}
-              to ={`/${stock.symbol}`}
-              className = "card" >
-          <h4 className="title">
-              {>
-          <div className="ticker">
-              <p className="price">
-                  ${list.latestPrice}
-              </p>
-              <span className={`change ${switchPrice}`}>
-                  
-                      {list.changePercent}
-                  
-              </span>
-          </div>
-      </Link>
-  ))
-
-  return (
-    <>
-      <h1>Hello twirl</h1>
-        {data}
-      </>
-  )
+    try {
+      const response = await Axios.get(
+          `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${IEX_TOKEN}`
+      )
+      this.setState({
+        stock: response.data,
+        isLoading: false
+      })
+  } catch (error) {
+      console.error(error)
+  }
 }
+  
 
-export default StockData
+    addToWatchList = () => {
+        const add = this.state.stock
+        this.setState({
+            watchListStocks:[...this.state.watchListStocks, add]
+        })
+    }
+  
+
+  render() {
+      const { isLoading, stock } = this.state
+        return (
+            <div className="container" >
+            {
+              isLoading ? (
+                <h1 className="title">loading...</h1>
+              ) : (
+                  <div className="stock-data">
+                    <div>
+                      <span className="label">
+                        Symbol:
+                      </span>
+                      <span className="detail-value">
+                        {stock.companyName}
+                      </span>
+                    </div>
+
+                    <div>
+                      <span className="label">
+                        Exchange:
+                      </span>
+                      <span className="data-value">
+                        {stock.primaryExchange}
+                      </span>
+                    </div>
+
+                    <div>
+                      <span className="label">
+                        Latest Price:
+                      </span>
+                      <span className="data-value">
+                        ${stock.latestPrice}
+                      </span>
+                    </div>
+
+                    <div>
+                      <span className="label">
+                        52 Week High:
+                      </span>
+                      <span className="data-value">
+                        ${stock.week52High}
+                      </span>
+                     </div>
+
+                    <div>
+                      <span className="label">
+                        52 Week Low: 
+                      </span>
+                      <span className="data-value">
+                        ${stock.week52Low}
+                      </span>
+                    </div>
+
+                    <div>
+                      <span className="label">
+                        Market Cap:
+                      </span>
+                      <span className="data-value">
+                        {stock.marketCap}
+                      </span>
+                    </div>
+
+                    <div>
+                      <span className="label">
+                        PE Ratio:
+                      </span>
+                      <span className="data-value">
+                        {stock.peRatio}
+                      </span>
+                    </div>
+                    </div>
+              )
+                }
+            {/* <button
+              onClick="goBack()">
+              Go Back
+            </button>
+            <script>
+                function goBack() {
+                window.history.back()
+              }
+            </script> */}
+            </div >
+            
+        )
+    }
+}

@@ -1,6 +1,7 @@
 import React from 'react'
+import StockData from './StockData'
 import NumericLabel from 'react-pretty-numbers'
-import {Link} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
 
 const Watchlist = ({ list }) => {
     const switchPrice = Number(list.change) > 0 ? 'up' : 'down'
@@ -27,14 +28,19 @@ const Watchlist = ({ list }) => {
                     </NumericLabel>
                 </span>
             </div>
-        </Link>
+      </Link>
+      
     ))
 
-        return (
-        <>          
-            <h1>Watch List</h1>
-            {stock}
-        </>
+  return (
+    <>          
+      <h1>Watch List</h1>
+        {stock}
+        <Route
+          path={`/stockdata/:symbol`}
+          render={(routerProps) => <StockData data={stock} {...routerProps} />}
+        /> 
+    </>
     )
 }
     

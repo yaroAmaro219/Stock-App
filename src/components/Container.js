@@ -3,6 +3,7 @@ import Axios from 'axios'
 import StocksContainer from './StocksContainer'
 import Search from './Search'
 import Watchlist from './Watchlist'
+import Header from './Header'
 const IEX_TOKEN = process.env.REACT_APP_IEX_TOKEN
 
 
@@ -17,14 +18,12 @@ export default class Container extends Component {
         }
     }
 
-
     addToWatchList = () => {
         const add = this.state.stock
         this.setState({
             watchListStocks:[...this.state.watchListStocks, add]
         })
     }
-
 
     fetchStocks = async () => {
         this.setState({
@@ -33,19 +32,16 @@ export default class Container extends Component {
 
         try {
             const { searchQuery } = this.state
-            console.log(searchQuery)
             const response = await Axios.get(
                 `https://cloud.iexapis.com/stable/stock/${searchQuery}/quote?token=${IEX_TOKEN}`
             )
 
-            console.log(response)
-
             this.setState({
-                stock: response.data
+              stock: response.data
             })
-        } catch (error) {
+          } catch (error) {
             console.error(error)
-        }
+          }
     }
 
     handleChange = event => {
@@ -62,25 +58,26 @@ export default class Container extends Component {
 
     render() {
         return (
-            <div className="container" >
-
+          <div className="container" >
+            <Header />
             <Search
-                onChange={this.handleChange}
-                onSubmit = {this.handleSubmit}
-                value = {this.state.searchQuery}
-                name="searchQuery"
+              onChange={this.handleChange}
+              onSubmit = {this.handleSubmit}
+              value = {this.state.searchQuery}
+              name="searchQuery"
             />
                 
-                    <StocksContainer
-                        stock={this.state.stock}
-                        addToWatchList={this.addToWatchList}
-                    />
+            <StocksContainer
+              stock={this.state.stock}
+              addToWatchList={this.addToWatchList}
+            />
                      
                 
             <Watchlist
-                    list={this.state.watchListStocks}
+              list={this.state.watchListStocks}
             />
-            </div >
+          </div >
+            
         )
     }
 }
