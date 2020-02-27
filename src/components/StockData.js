@@ -102,7 +102,7 @@ export default class StockData extends Component {
 
                     <div>
                       <span className="label">
-                        PE Ratio:
+                        Price to Earnings Ratio:
                       </span>
                       <span className="data-value">
                         {stock.peRatio}
