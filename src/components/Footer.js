@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
     return (
-        <p>Artemie Amari 2020</p>
+      <p>Artemie Amari 2020</p>
     )
 }
 

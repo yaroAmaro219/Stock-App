@@ -38,89 +38,80 @@ export default class StockData extends Component {
   
 
   render() {
-      const { isLoading, stock } = this.state
-        return (
-            <div className="container" >
-            {
-              isLoading ? (
-                <h1 className="title">loading...</h1>
-              ) : (
-                  <div className="stock-data">
-                    <div>
-                      <span className="label">
-                        Symbol:
-                      </span>
-                      <span className="detail-value">
-                        {stock.companyName}
-                      </span>
-                    </div>
+    const { isLoading, stock } = this.state
+    return (
+      <div className="container" >
+      {
+        isLoading ? (
+          <h1 className="title">loading...</h1>
+        ) : (
+            <div className="stock-data">
+              <div>
+                <span className="label">
+                  Symbol:
+                </span>
+                <span className="detail-value">
+                  {stock.companyName}
+                </span>
+              </div>
 
-                    <div>
-                      <span className="label">
-                        Exchange:
-                      </span>
-                      <span className="data-value">
-                        {stock.primaryExchange}
-                      </span>
-                    </div>
+              <div>
+                <span className="label">
+                  Exchange:
+                </span>
+                <span className="data-value">
+                  {stock.primaryExchange}
+                </span>
+              </div>
 
-                    <div>
-                      <span className="label">
-                        Latest Price:
-                      </span>
-                      <span className="data-value">
-                        ${stock.latestPrice}
-                      </span>
-                    </div>
+              <div>
+                <span className="label">
+                  Latest Price:
+                </span>
+                <span className="data-value">
+                  ${stock.latestPrice}
+                </span>
+              </div>
 
-                    <div>
-                      <span className="label">
-                        52 Week High:
-                      </span>
-                      <span className="data-value">
-                        ${stock.week52High}
-                      </span>
-                     </div>
+              <div>
+                <span className="label">
+                  52 Week High:
+                </span>
+                <span className="data-value">
+                  ${stock.week52High}
+                </span>
+                </div>
 
-                    <div>
-                      <span className="label">
-                        52 Week Low: 
-                      </span>
-                      <span className="data-value">
-                        ${stock.week52Low}
-                      </span>
-                    </div>
+              <div>
+                <span className="label">
+                  52 Week Low: 
+                </span>
+                <span className="data-value">
+                  ${stock.week52Low}
+                </span>
+              </div>
 
-                    <div>
-                      <span className="label">
-                        Market Cap:
-                      </span>
-                      <span className="data-value">
-                        {stock.marketCap}
-                      </span>
-                    </div>
+              <div>
+                <span className="label">
+                  Market Cap:
+                </span>
+                <span className="data-value">
+                  {stock.marketCap}
+                </span>
+              </div>
 
-                    <div>
-                      <span className="label">
-                        Price to Earnings Ratio:
-                      </span>
-                      <span className="data-value">
-                        {stock.peRatio}
-                      </span>
-                    </div>
-                    </div>
-              )
-                }
-            {/* <button
-              onClick="goBack()">
-              Go Back
-            </button>
-            <script>
-                function goBack() {
-                window.history.back()
-              }
-            </script> */}
-            </div >
+              <div>
+                <span className="label">
+                  Price to Earnings Ratio:
+                </span>
+                <span className="data-value">
+                  {stock.peRatio}
+                </span>
+              </div>
+              </div>
+        )
+          }
+      </div >
             
         )
     }

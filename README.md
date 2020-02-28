@@ -1,10 +1,11 @@
 1. Title: A working title for your app. (Feel free to have some fun with this.)
 Finance-App
+http://amari-financeapp.surge.sh/
+
 2. Description: 4 to 5 sentences in non-technical speak summarizing the features, functions, and goals.
 The goal of this project is to create a app that makes an api call when you search a stoxk ticker, and returns the stock with some details. I want to add as many things as I can by the end of the time limit. One thing to include is  a watchlist and a more details page.
 
-3. Wireframes: Mockups of your app on desktop, tablet, and mobile.
-
+Check Wireframe folder
 
 4. Component Heirarchy: A visual tree of your components, depicting the parent/child relationships, as well as an indication of which will be class components, requiring state, and which will be functional components, taking props.
 App.js

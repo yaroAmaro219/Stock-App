@@ -20,23 +20,24 @@ export default class Container extends Component {
     }
   }
 
-  // componentDidMount() {
-  //  if (this.state.watchListStocks.length === 0) {
-  //     return (
-  //       this.setState({
-  //         watchListStocks: JSON.parse(localStorage.getItem('watchList'))
-  //       }))
-  //   } else {
-  //     return 
-  //   }
-  // }
+  componentDidMount() {
+    const storageStocks = JSON.parse(localStorage.getItem('watchList'))
+   if (this.state.watchListStocks.length === 0 && storageStocks !== null) {
+      return (
+        this.setState({
+          watchListStocks: storageStocks
+        }))
+    } else {
+      return  
+    }
+  }
 
   addToWatchList = () => {
     const add = this.state.stock
     this.setState({
       watchListStocks: [...this.state.watchListStocks, add]
     }
-      // , () => localStorage.setItem('watchList', JSON.stringify(this.state.watchListStocks))
+      , () => localStorage.setItem('watchList', JSON.stringify(this.state.watchListStocks))
     )
   }
 
