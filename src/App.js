@@ -2,8 +2,6 @@ import React from 'react';
 import Container from './components/Container'
 import Footer from './components/Footer'
 import StockData from './components/StockData'
-import Posts from './components/Posts'
-import Contact from './components/Contact'
 import './App.css';
 import {
   Switch,
@@ -20,16 +18,6 @@ function App() {
           activeClassName={'active'}>
           Home
           </NavLink>
-        <NavLink
-          to={'/posts'}
-          activeClassName={'active'}>
-          Posts
-          </NavLink>
-        <NavLink
-          exact to={'/contact'}
-          activeClassName={'active'}>
-          Contact
-          </NavLink>
       </nav>
       <main>
         <div className="App">
@@ -43,14 +31,7 @@ function App() {
             <Route 
               exact path={'/:symbol'}
               component={StockData} />
-            
           </Switch>
-          <Route
-              path={'posts'}
-            component={Posts} />
-          <Route
-              exact path={'/contact'}
-              component={Contact} />
             
         </div>
         

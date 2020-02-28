@@ -70,11 +70,19 @@ a.card {
 }
 
 .down {
+  color: white;
 	background: #ef5350;
 }
 
 .up {
+  color: white;
 	background: #4caf50;
+}
+.price{
+  color: white;
+}
+Link{
+  color: white;
 }
  @media (max-width: 500px  ){
     .App{

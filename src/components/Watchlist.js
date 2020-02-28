@@ -33,8 +33,15 @@ const Watchlist = ({ list }) => {
     ))
 
   return (
-    <>          
-      <h1>Watch List</h1>
+    <> 
+      <u>
+        <h1>Watch List</h1>
+      </u>  
+      {/* <button
+        // onClick={() => (localStorage.clear('watchList'))}
+      >
+        Refresh
+        </button> */}
         {stock}
         <Route
           path={`/stockdata/:symbol`}

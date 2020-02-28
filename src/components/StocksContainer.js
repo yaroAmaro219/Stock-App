@@ -42,7 +42,7 @@ const StocksContainer = ({ stock, addToWatchList }) => {
       <Route
         path={`/stockdata/:symbol`}
         render={(routerProps) => <StockData data={stock} {...routerProps} />}/> 
-    </>
+      </>
     )
 }
 
